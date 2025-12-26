@@ -1,0 +1,6 @@
+@Credit_Wallet_HostAddress = http://localhost:5193
+
+GET {{Credit_Wallet_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
