@@ -1,4 +1,5 @@
 using Credit_Wallet.Data;
+using Credit_Wallet.Features.AddCreditToWallet;
 using Credit_Wallet.Features.MakeWallet;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,8 +16,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IMakeWalletService, MakeWalletService>();
 
+builder.Services.AddScoped<AddCreditToWalletHandler>();
+
 
 var app = builder.Build();
+//map endpoints
+AddCreditToWalletEndpoint.MapAddCreditToWalletEndpoint(app);
 
 if (app.Environment.IsDevelopment())
 {

@@ -13,3 +13,11 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+# Visual Studio / .NET
+bin/
+obj/
+*.user
+*.suo
+*.vs/
+*.vscode/
+Debug/
