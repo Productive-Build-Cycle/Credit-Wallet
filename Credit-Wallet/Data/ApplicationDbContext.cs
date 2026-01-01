@@ -22,7 +22,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Wallet>()
             .Property(w=>w.LastUpdateDateTime)
             .ValueGeneratedOnAddOrUpdate()
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasDefaultValueSql("GETDATE()");
 
         modelBuilder.Entity<Transaction>()
             .Property(t => t.Amount)
