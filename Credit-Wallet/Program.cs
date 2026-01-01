@@ -16,7 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 
 builder.Services.AddScoped<IMakeWalletService, MakeWalletService>();
-builder.Services.AddScoped<GetUserWalleetHandler>();
+builder.Services.AddScoped<GetUserWalletHandler>();
 
 var app = builder.Build();
 GetUserWalletEndpoint.MapGetUserWalletEndpoint(app);

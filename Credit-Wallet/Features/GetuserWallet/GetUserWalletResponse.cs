@@ -5,5 +5,6 @@
        
         public decimal Balance { get; set; }
         public DateTime CheckedDateTime { get; set; }
+       
     }
 }

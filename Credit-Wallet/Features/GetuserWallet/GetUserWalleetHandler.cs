@@ -3,12 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Credit_Wallet.Features.GetuserWallet
 {
-    public class GetUserWalleetHandler
+    public class GetUserWalletHandler
     {
         private readonly ApplicationDbContext _dbContext;
-        public GetUserWalleetHandler(ApplicationDbContext dbContext)
+        private readonly ILogger<GetUserWalletHandler> _logger;
+        public GetUserWalletHandler(ApplicationDbContext dbContext, 
+                                     ILogger<GetUserWalletHandler> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
         public async Task<GetUserWalletResponse?> HandleAsync(string userId)
         {
@@ -18,6 +21,8 @@ namespace Credit_Wallet.Features.GetuserWallet
             if (wallet == null)
             {
                 return null;
+                _logger.LogWarning("Wallet not found for userId: {UserId}", userId);
+
             }
             return new GetUserWalletResponse
             {
