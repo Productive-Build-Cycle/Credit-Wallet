@@ -1,4 +1,5 @@
 using Credit_Wallet.Data;
+using Credit_Wallet.Features.DeductFromWallet;
 using Credit_Wallet.Features.MakeWallet;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,9 +15,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 
 builder.Services.AddScoped<IMakeWalletService, MakeWalletService>();
-
+builder.Services.AddScoped<DeductFfromWalletValidator>();
+builder.Services.AddScoped<DeductFromWalletHandler>();
 
 var app = builder.Build();
+DeductFromWalletEndpoint.MapDeductFromWalletEndpoint(app);
 
 if (app.Environment.IsDevelopment())
 {
