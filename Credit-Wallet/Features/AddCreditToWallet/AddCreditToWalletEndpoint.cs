@@ -10,6 +10,10 @@ namespace Credit_Wallet.Features.AddCreditToWallet
                                                          AddCreditToWalletHandler handler) =>
             {
                 var response = await handler.HandleAsync(request);
+                if(!response.Success)
+                {
+                    return Results.BadRequest(response);
+                }
                 return Results.Ok(response);
             });
         }

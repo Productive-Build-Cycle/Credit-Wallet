@@ -17,7 +17,7 @@ namespace Credit_Wallet.Features.AddCreditToWallet
             var validator = new AddCreditToWalletValidator();
             if (!validator.Validate(request))
             {
-                var response=new AddCredittoWalletResponse
+                 return new AddCredittoWalletResponse
                 {
                     Success = false,
                     Message = "Invalid request ",
@@ -35,17 +35,39 @@ namespace Credit_Wallet.Features.AddCreditToWallet
                     
                 };
             }
+            using var transaction=await _dbcontext.Database.BeginTransactionAsync();
+            try
+            {
+                var walletTransaction = new Transaction
+                {
+                    WalletId = wallet.Id,
+                    Amount = request.Amount,
+                    TransactionType = TransactionType.Deposit,
+                    CreatedDateTime = DateTime.Now
+                };
+                await _dbcontext.Transactions.AddAsync(walletTransaction);
             
                 wallet.Balance += request.Amount;
-              //  _dbcontext.Wallets.Update(wallet);
-               
-            await _dbcontext.SaveChangesAsync();
-            return new AddCredittoWalletResponse
+                await _dbcontext.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return new AddCredittoWalletResponse
+                {
+                    Success = true,
+                    Message = "Credit added successfully",
+                    NewBalance = wallet.Balance
+                };
+            }
+            catch(Exception ex)
             {
-                Success = true,
-                Message = "Credit added successfully",
-                NewBalance = wallet.Balance
-            };
+                await transaction.RollbackAsync();
+                return new AddCredittoWalletResponse
+                {
+                    Success = false,
+                    Message = "An error occurred while adding credit to the wallet: " + ex.Message,
+                    
+                };
+            }
+           
         }
     }
 }
