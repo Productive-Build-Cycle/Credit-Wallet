@@ -1,28 +1,32 @@
-#Credit Wallet Api
+💰Credit Wallet Api
 Clean Architecture–inspired Credit Wallet API designed with clear separation of concerns, 
 feature-based organization, and maintainable business logic.
 
 The system allows users to manage a wallet, add credit, and retrieve wallet information 
 in a safe and structured way.
+
 -----------------------------------
-#Architecture Overview
+🚀 Architecture Overview
 The project follows a Clear Architecture Structure approach with a strong focus on:
 
 - Separation of concerns
 - Feature-based organization
+  
 ----------------------------------
-###High Level Structure
+High Level Structure
 - Data  – Persistence and database access
 - Feature – Application use cases (handlers, endpoints, validators)
+  
 ----------------------------------------
-##Data Layer
+🗄Data Layer
 - Entity definitions (Wallet, Transaction, etc.)
-- `ApplicationDbContext`
+- ApplicationDbContext
 - Database access
 - Entity persistence
-- -No ussiness Logic
+- No Bussiness Logic
+  
 - -------------------------------------
-##Feature layer - Application Logic
+Feature layer - Application Logic
 Each feature is self-contained and typically includes:
 - Request DTO
 - Response DTO
@@ -34,17 +38,20 @@ Each feature is self-contained and typically includes:
   feature/get-user-wallet
   feature/add-credit-to-wallet
   Feature/deduct-from-wallet
+  
 --------------------------------------
-##Technologies Used
--Asp.Net Minimal Api
--Entity Frame Work
+🛠Technologies Used
+-ASP.Net Minimal API
+-Entity FrameWork
 -Sql Server
 -C#
 -Dependency Injection
 -Validation
+
 ----------------------------------
-## Error Handling & Logging
+⚠️ Error Handling & Logging
 - Proper null checks are implemented
 - Meaningful HTTP status codes are returned
+  
 - ---------------------------------
-Auther Alireza Hosseini ,Zahra HAvaei
+Author Alireza Hosseini ,Zahra Havaei
