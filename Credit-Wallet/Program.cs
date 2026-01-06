@@ -1,5 +1,6 @@
 using Credit_Wallet.Data;
 using Credit_Wallet.Features.AddCreditToWallet;
+using Credit_Wallet.Features.DeductFromWallet;
 using Credit_Wallet.Features.MakeWallet;
 using Credit_Wallet.Data.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,11 @@ var app = builder.Build();
 GetUserWalletEndpoint.MapGetUserWalletEndpoint(app);
 //map endpoints
 AddCreditToWalletEndpoint.MapAddCreditToWalletEndpoint(app);
+builder.Services.AddScoped<DeductFfromWalletValidator>();
+builder.Services.AddScoped<DeductFromWalletHandler>();
+
+var app = builder.Build();
+DeductFromWalletEndpoint.MapDeductFromWalletEndpoint(app);
 
 if (app.Environment.IsDevelopment())
 {
