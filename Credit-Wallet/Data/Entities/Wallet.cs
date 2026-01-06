@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Credit_Wallet.Data.Entities;
 
@@ -9,5 +10,7 @@ public class Wallet
     [Required]
     public string UserId { get; set; }
     public decimal Balance { get; set; }
+
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime LastUpdateDateTime { get; set; } = DateTime.Now;
 }
